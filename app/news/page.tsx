@@ -1,5 +1,5 @@
 import SectionTitle from '@/components/shared/SectionTitle'
-import Image from 'next/image'
+import SafeImage from '@/components/shared/SafeImage'
 import Link from 'next/link'
 import { Calendar, ArrowRight, Clock } from 'lucide-react'
 
@@ -77,17 +77,14 @@ export default function NewsPage() {
     <>
       <section className="relative h-[60vh] min-h-[400px] flex items-center overflow-hidden">
         <div className="absolute inset-0 bg-navy-900">
-          <Image
+          <SafeImage
             src="/images/news/news-1.jpg"
             alt="News & Events"
             fill
             className="object-cover opacity-40"
             priority
             sizes="100vw"
-            onError={(e) => {
-              const target = e.target as HTMLImageElement
-              target.src = 'https://placehold.co/1920x600/1a2b4a/ffffff?text=News+%26+Events'
-            }}
+            fallbackSrc="https://placehold.co/1920x600/1a2b4a/ffffff?text=News+%26+Events"
           />
         </div>
         <div className="absolute inset-0 bg-gradient-to-r from-navy-950/80 to-transparent" />
@@ -108,16 +105,13 @@ export default function NewsPage() {
             {newsArticles.map((article) => (
               <article key={article.id} className="card group">
                 <div className="overflow-hidden aspect-[4/3]">
-                  <Image
+                  <SafeImage
                     src={article.image}
                     alt={article.title}
                     width={600}
                     height={450}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    onError={(e) => {
-                      const target = e.target as HTMLImageElement
-                      target.src = `https://placehold.co/600x450/1a2b4a/ffffff?text=${encodeURIComponent(article.category)}`
-                    }}
+                    fallbackSrc={`https://placehold.co/600x450/1a2b4a/ffffff?text=${encodeURIComponent(article.category)}`}
                   />
                 </div>
                 <div className="p-6">

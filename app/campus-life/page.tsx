@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import SafeImage from '@/components/shared/SafeImage'
 import { Dumbbell, FlaskConical, Monitor, BookOpen, Music, Palette, Calendar, Trophy, Bus, GraduationCap } from 'lucide-react'
 
 const categories = [
@@ -19,17 +19,14 @@ export default function CampusLifePage() {
     <>
       <section className="relative h-[60vh] min-h-[400px] flex items-center overflow-hidden">
         <div className="absolute inset-0 bg-navy-900">
-          <Image
+          <SafeImage
             src="/images/hero/hero-1.jpg"
             alt="Campus Life at Ambassador Global Academy"
             fill
             className="object-cover opacity-40"
             priority
             sizes="100vw"
-            onError={(e) => {
-              const target = e.target as HTMLImageElement
-              target.src = 'https://placehold.co/1920x600/1a2b4a/ffffff?text=Campus+Life'
-            }}
+            fallbackSrc="https://placehold.co/1920x600/1a2b4a/ffffff?text=Campus+Life"
           />
         </div>
         <div className="absolute inset-0 bg-gradient-to-r from-navy-950/80 to-transparent" />

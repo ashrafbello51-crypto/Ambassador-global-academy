@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import SafeImage from '@/components/shared/SafeImage'
 
 const galleryImages = [
   { src: '/images/gallery/1.jpg', alt: 'Students in classroom' },
@@ -29,17 +29,14 @@ export default function GalleryPage() {
     <>
       <section className="relative h-[60vh] min-h-[400px] flex items-center overflow-hidden">
         <div className="absolute inset-0 bg-navy-900">
-          <Image
+          <SafeImage
             src="/images/gallery/13.jpg"
             alt="Gallery"
             fill
             className="object-cover opacity-40"
             priority
             sizes="100vw"
-            onError={(e) => {
-              const target = e.target as HTMLImageElement
-              target.src = 'https://placehold.co/1920x600/1a2b4a/ffffff?text=Gallery'
-            }}
+            fallbackSrc="https://placehold.co/1920x600/1a2b4a/ffffff?text=Gallery"
           />
         </div>
         <div className="absolute inset-0 bg-gradient-to-r from-navy-950/80 to-transparent" />
@@ -62,17 +59,14 @@ export default function GalleryPage() {
                 key={index}
                 className="break-inside-avoid group relative rounded-xl overflow-hidden shadow-soft hover:shadow-elevated transition-all duration-500"
               >
-                <Image
+                <SafeImage
                   src={image.src}
                   alt={image.alt}
                   width={600}
                   height={index % 3 === 0 ? 450 : index % 3 === 1 ? 350 : 500}
                   className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement
-                    target.src = `https://placehold.co/600x450/1a2b4a/ffffff?text=Photo`
-                  }}
+                  fallbackSrc="https://placehold.co/600x450/1a2b4a/ffffff?text=Photo"
                 />
                 <div className="absolute inset-0 bg-navy-900/0 group-hover:bg-navy-900/20 transition-colors duration-500" />
               </div>

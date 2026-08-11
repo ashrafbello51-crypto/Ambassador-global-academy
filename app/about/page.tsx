@@ -1,5 +1,5 @@
 import SectionTitle from '@/components/shared/SectionTitle'
-import Image from 'next/image'
+import SafeImage from '@/components/shared/SafeImage'
 
 const timeline = [
   { year: '2002', event: 'Ambassador Global Academy was founded with a vision for excellence.' },
@@ -17,17 +17,14 @@ export default function AboutPage() {
       {/* Hero Section */}
       <section className="relative h-[60vh] min-h-[400px] flex items-center overflow-hidden">
         <div className="absolute inset-0 bg-navy-900">
-          <Image
+          <SafeImage
             src="/images/hero/hero-1.jpg"
             alt="About Ambassador Global Academy"
             fill
             className="object-cover opacity-40"
             priority
             sizes="100vw"
-            onError={(e) => {
-              const target = e.target as HTMLImageElement
-              target.src = 'https://placehold.co/1920x600/1a2b4a/ffffff?text=About+Us'
-            }}
+            fallbackSrc="https://placehold.co/1920x600/1a2b4a/ffffff?text=About+Us"
           />
         </div>
         <div className="absolute inset-0 bg-gradient-to-r from-navy-950/80 to-transparent" />
@@ -61,15 +58,12 @@ export default function AboutPage() {
               </p>
             </div>
             <div className="relative rounded-2xl overflow-hidden aspect-square shadow-soft">
-              <Image
+              <SafeImage
                 src="/images/about/about-1.jpg"
                 alt="School building"
                 fill
                 className="object-cover"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement
-                  target.src = 'https://placehold.co/600x600/1a2b4a/ffffff?text=Our+History'
-                }}
+                fallbackSrc="https://placehold.co/600x600/1a2b4a/ffffff?text=Our+History"
               />
             </div>
           </div>
